@@ -46,7 +46,6 @@ class MorphemeAwareBertModel(BertModel):
         bias_tensor = torch.tensor(bias_np, dtype=torch.float32, device=next(self.parameters()).device)
         num_heads = self.config.num_attention_heads
         bias_tensor = bias_tensor.unsqueeze(1).repeat(1, num_heads, 1, 1)
-        print(bias_tensor)
         self.bias_matrix = bias_tensor
 
     def _create_patched_forward(self, layer_idx, head_indices, original_forward, attn_module):
@@ -190,7 +189,6 @@ class MorphemeAwareBertModel(BertModel):
             bmes_ids = bmes_tags
 
         if inputs_embeds is None and self.block_bmes_emb == False:
-            print("Using bmes embeddings")
             inputs_embeds = self.embeddings(
                 input_ids=input_ids,
                 token_type_ids=token_type_ids,

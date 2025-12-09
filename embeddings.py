@@ -39,7 +39,6 @@ class BoundaryAwareEmbeddings(BertEmbeddings):
             E_boundary = self.bmes_embeddings(bmes_ids)
 
             if self.adaptive:
-                print("Using Adaptive")
                 concat = torch.cat([E_boundary, E_token], dim=-1)
                 W = self.sigmoid(self.gate(concat))
                 E_fused = W * E_boundary + (1 - W) * E_token
