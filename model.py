@@ -190,7 +190,7 @@ class MorphemeAwareBertModel(BertModel):
             bmes_ids = bmes_tags
 
         if inputs_embeds is None and self.block_bmes_emb == False:
-            print("Using bmes embeddings")
+            # print("Using bmes embeddings")
             inputs_embeds = self.embeddings(
                 input_ids=input_ids,
                 token_type_ids=token_type_ids,
